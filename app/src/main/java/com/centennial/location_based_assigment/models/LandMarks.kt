@@ -8,6 +8,10 @@ class Landmark(val name: String,
 
         companion object {
             @JvmStatic
+            fun filterByType(type: String): List<Landmark> {
+                return getLandmarks().filter { it.typeOfLandMark == type }
+            }
+            @JvmStatic
             fun getLandmarks(): List<Landmark> {
                 return listOf(
                     Landmark("Niagara Falls", "Ontario", 43.0828, -79.0742, "Natural Landmark"),
