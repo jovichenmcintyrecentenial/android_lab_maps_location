@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.centennial.location_based_assigment.R
 import com.centennial.location_based_assigment.models.Landmark
 
-class LandmarkAdapter(private val landmarks: List<Landmark>) :
+class LandmarkAdapter(private val landmarks: List<Landmark>,
+                      private val onItemClick: (Landmark) -> Unit) :
     RecyclerView.Adapter<LandmarkAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -26,6 +27,9 @@ class LandmarkAdapter(private val landmarks: List<Landmark>) :
         val landmark = landmarks[position]
         holder.nameTextView.text = landmark.name
         holder.locationTextView.text = "${landmark.province_name}"
+
+        // set the click listener for the item view
+        holder.itemView.setOnClickListener { onItemClick(landmark) }
     }
 
     override fun getItemCount(): Int {
